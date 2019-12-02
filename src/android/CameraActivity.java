@@ -478,6 +478,11 @@ public class CameraActivity extends Fragment {
         Log.d(TAG, "CameraPreview onPictureTaken general exception");
       } finally {
         canTakePicture = true;
+         if(mCamera == null)
+        {
+          setDefaultCameraId();
+          mCamera = Camera.open(defaultCameraId);
+        }
         mCamera.startPreview();
       }
     }
