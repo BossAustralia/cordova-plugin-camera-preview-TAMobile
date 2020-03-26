@@ -766,12 +766,14 @@
           NSString *base64ImageAux = nil;
           NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
           
-          if(base64ImageAux || base64ImageAux.length>0 || base64ImageAux != nil){
+          @try {
             [params addObject:base64ImageAux];
               pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
-          }else{
-              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:@"base64ImageAux is null!"];
-            }
+          }
+          @catch (NSException *exception) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:@"base64ImageAux is null!"];
+
+          }
         }
 
         CGImageRelease(resultFinalImage); // release CGImageRef to remove memory leaks
