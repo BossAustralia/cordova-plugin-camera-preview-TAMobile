@@ -762,13 +762,12 @@
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSURL fileURLWithPath:filePath] absoluteString]];
           }
         } else {
-          NSMutableArray *params = [[NSMutableArray alloc] init];
-          NSString *base64ImageAux = nil;
-          NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
-          
           @try {
+            NSMutableArray *params = [[NSMutableArray alloc] init];
+            NSString *base64ImageAux = nil;
+            NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
             [params addObject:base64ImageAux];
-              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
           }
           @catch (NSException *exception) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[exception reason]];
