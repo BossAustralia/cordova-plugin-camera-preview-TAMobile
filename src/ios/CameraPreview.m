@@ -764,8 +764,10 @@
         } else {
           NSMutableArray *params = [[NSMutableArray alloc] init];
           NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
-          [params addObject:base64Image];
-          pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
+          if(str || str.length>0 || str != nil){
+            [params addObject:base64Image];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
+          }
         }
 
         CGImageRelease(resultFinalImage); // release CGImageRef to remove memory leaks
