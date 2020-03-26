@@ -765,16 +765,13 @@
           NSMutableArray *params = [[NSMutableArray alloc] init];
           NSString *base64ImageAux = nil;
           NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
-          @try {
-              [params addObject:base64ImageAux];
+          
+          if(base64ImageAux || base64ImageAux.length>0 || base64ImageAux != nil){
+            [params addObject:base64ImageAux];
               pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
+          }else{
+              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[err localizedDescription]];
             }
-            @catch (NSException *exception) {
-              NSLog(@"error while get base64Image: %@", [exception reason]);
-            }
-          //if(base64Image || base64Image.length>0 || base64Image != nil){
-            
-          //}
         }
 
         CGImageRelease(resultFinalImage); // release CGImageRef to remove memory leaks
