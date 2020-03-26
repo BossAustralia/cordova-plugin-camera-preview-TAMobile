@@ -763,7 +763,7 @@
           }
         } else {
           NSMutableArray *params = [[NSMutableArray alloc] init];
-          NSString *base64ImageAux = nil
+          NSString *base64ImageAux = nil;
           NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
           //if(base64Image || base64Image.length>0 || base64Image != nil){
             [params addObject:base64ImageAux];
