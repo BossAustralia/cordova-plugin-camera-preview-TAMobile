@@ -764,7 +764,7 @@
         } else {
           @try {
             NSMutableArray *params = [[NSMutableArray alloc] init];
-            NSString *base64Image = nil; //[self getBase64Image:resultFinalImage withQuality:quality];
+            NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
             [params addObject:base64Image];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:params];
           }
